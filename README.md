@@ -42,4 +42,3 @@ The repo includes `evals/convex-finance.yaml` with prompt, expected facts, and f
 - Convex docs: https://docs.convexfinance.com/convexfinance
 - Contract addresses: https://docs.convexfinance.com/convexfinance/faq/contract-addresses
 - Protocol repo: https://github.com/convex-eth/platform
-- Convex MCP repo: https://github.com/BAiSEDagent/convex-mcp

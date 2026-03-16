@@ -197,4 +197,3 @@ Primary references:
 - `https://docs.convexfinance.com/convexfinance`
 - `https://docs.convexfinance.com/convexfinance/faq/contract-addresses`
 - `https://github.com/convex-eth/platform`
-- `https://github.com/BAiSEDagent/convex-mcp`
