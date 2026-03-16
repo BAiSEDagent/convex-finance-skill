@@ -7,12 +7,20 @@ description: Use when an agent needs to understand or operate around Convex Fina
 
 Use this skill when the user is asking about the **Convex protocol itself**, not just the `convex-mcp` implementation.
 
-This skill teaches an agent how to reason about:
+Use this skill for:
 - boosted staking on top of Curve
 - CVX and cvxCRV reward flows
 - pool discovery and position analysis
 - protocol-level stats and contract references
 - when to use Convex MCP vs direct onchain inspection
+
+Do **not** use this skill as the primary skill when the user is really asking to:
+- execute a transaction
+- build or debug the MCP server itself
+- deploy a smart contract
+- do a full Solidity security audit
+
+In those cases, route to the transaction-capable integration, MCP-builder flow, or Ethereum security/audit workflow instead.
 
 ## Core mental model
 
@@ -82,6 +90,17 @@ Break APY into:
 
 Make it explicit that APY is time-sensitive and not guaranteed.
 
+## Protocol surface map
+
+Keep these surfaces distinct:
+- **Curve / main Convex path:** boosted LP staking, CVX, cvxCRV, lockers, reward contracts
+- **Frax path:** separate booster / voter / staking contracts around cvxFXS
+- **f(x) path:** separate booster / voter / staking contracts around cvxFXN
+- **MCP layer:** read-only analytics and workflow support, not execution
+
+If the user says "Convex" without more detail, assume they mean the main Curve-centric flow first.
+If they mention FXS, cvxFXS, FXN, or cvxFXN, load the wider address table in `references/contract-addresses.md` and answer against that surface specifically.
+
 ## Canonical protocol facts
 
 Use official Convex docs and verified contract sources for these references.
@@ -101,6 +120,11 @@ Ethereum mainnet addresses commonly needed:
 - CVX Locker: `0x72a19342e8F1838460eBFCCEf09F6585e32db86E`
 
 Read `references/contract-addresses.md` when you need a wider address table across Curve mainnet, Frax, f(x), Arbitrum, or Polygon.
+
+For execution-critical or production-facing answers, recommend quick verification before acting:
+- confirm the address against official Convex docs
+- confirm the block explorer page is verified
+- if available, confirm a simple read such as `symbol()`, `owner()`, or `poolLength()` matches expectations
 
 ## Workflow references
 
@@ -143,6 +167,26 @@ In practice:
 - Prefer official docs, verified contracts, and live MCP data over memory.
 - Surface shutdown status and risk caveats when discussing pools.
 - If the user asks for execution, hand off to the relevant transaction-capable tool or integration instead of pretending this skill can do it.
+
+## Failure modes and how to respond
+
+### MCP data missing or stale
+- Say the live data path is unavailable or may be stale.
+- Fall back to protocol explanation and contract references.
+- Do not invent pool stats.
+
+### User does not know the pool id
+- Start from pool discovery.
+- If MCP is unavailable, ask for the LP token or strategy name instead of guessing.
+
+### User asks for best yield or what they should do
+- Do not give financial advice.
+- Reframe into factual comparison: simplicity, reward mix, liquidity, and execution risk.
+
+### Docs and live data disagree
+- Prefer the freshest verified live read for current state.
+- Prefer official docs for contract identity and architecture.
+- Call out the discrepancy explicitly.
 
 ## Sources
 

@@ -2,6 +2,16 @@
 
 Use this file when the user needs concrete process guidance around Convex usage, analysis, or tooling.
 
+## Quick trigger examples
+
+This reference is especially useful for prompts like:
+- "What is Convex and why do people use it?"
+- "Check my Convex position"
+- "Compare Convex vs Curve"
+- "What rewards do I earn from cvxCRV?"
+- "Is this Convex pool still active?"
+- "Estimate APY for 10k in Convex"
+
 ## 1. Explain Convex quickly
 
 Use this structure:

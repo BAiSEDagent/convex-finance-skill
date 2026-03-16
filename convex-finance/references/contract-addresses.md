@@ -75,3 +75,11 @@ Primary source:
 - Treat this file as a convenience reference, not blind truth forever.
 - Before using an address in production code or user-facing analysis, re-check the official docs or verified block explorer page.
 - If the user only needs the most common Ethereum mainnet references, stay in `SKILL.md` and avoid loading this file.
+
+## Verification patterns
+
+Use these as lightweight sanity checks before treating an address as operational truth:
+- token contracts: verify `symbol()` and `decimals()` on a block explorer or read call
+- ownership-sensitive contracts: verify `owner()` or documented admin role
+- booster contracts: verify a read like `poolLength()` returns sensible non-zero state
+- reward contracts: verify the documented reward token aligns with current explorer metadata
