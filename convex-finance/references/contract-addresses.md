@@ -88,7 +88,8 @@ Verification method standard: official Convex docs first, then verified block ex
 
 ## Prisma surface (historical / inactive)
 
-Treat this section as legacy reference material. Prisma was compromised and later shut down / abandoned, so do not present this as an active default Convex surface.
+Treat this section as legacy reference material. Prisma governance confirmed shutdown and transition to Resupply after the exploit period, so do not present this as an active default Convex surface.
+Reference context: `Prisma Shutdown & Transition Plan` from Resupply / PIP-46 transition communications.
 
 - VoteProxy: `0x8ad7a9e2B3Cd9214f36Cb871336d8ab34DdFdD5b`
 - cvxPrisma: `0x34635280737b5BFe6c7DC2FC3065D60d66e78185`

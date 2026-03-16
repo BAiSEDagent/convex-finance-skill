@@ -45,7 +45,7 @@ Correct behavior:
 - Current APY and current claimable rewards are not static facts.
 - Reward composition must be decomposed, not flattened into one headline number.
 - Addresses should come from official docs or verified explorers, not memory.
-- Prisma should not be treated as an active default surface; it is legacy / shutdown context.
+- Prisma should not be treated as an active default surface; governance confirmed shutdown and transition to Resupply, so it is legacy context.
 
 ## Core mental model
 
