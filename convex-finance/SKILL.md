@@ -1,6 +1,6 @@
 ---
 name: convex-finance
-description: Use when an agent needs to understand or operate around Convex Finance: boosted Curve LP staking, cvxCRV, CVX rewards, Convex pool discovery, wallet position tracking, claimable reward checks, Convex contract references, or APY comparisons across Convex, Curve, Frax, and f(x). Trigger on phrases like 'Convex Finance', 'Convex pools', 'boosted staking', 'cvxCRV', 'claimable CRV', 'CVX rewards', 'Convex APY', 'track my Convex position', or 'how does Convex work'.
+description: "Use when an agent needs to understand or operate around Convex Finance: boosted Curve LP staking, cvxCRV, CVX rewards, Convex pool discovery, wallet position tracking, claimable reward checks, Convex contract references, or APY comparisons across Convex, Curve, Frax, and f(x). Trigger on phrases like 'Convex Finance', 'Convex pools', 'boosted staking', 'cvxCRV', 'claimable CRV', 'CVX rewards', 'Convex APY', 'track my Convex position', or 'how does Convex work'."
 ---
 
 # Convex Finance
