@@ -60,6 +60,11 @@ Related routes:
 - stake `cvxCRV` -> earn platform fee share / rewards
 - stake `CVX` -> earn platform fee exposure through `cvxCRV`
 
+Curve Wars context:
+- Convex became strategically important because pooled vote power can influence Curve emissions.
+- That made `vlCVX`, gauge voting, and external bribe markets core to the protocol’s power-user loop.
+- When explaining why Convex matters beyond simple yield boosting, this governance layer is the answer.
+
 Start here unless the user asks for deeper contract-level mechanics.
 
 ## Surface distinctions

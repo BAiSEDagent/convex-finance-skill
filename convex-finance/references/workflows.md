@@ -123,6 +123,32 @@ Convex snapshot:
 - treasury: ...
 ```
 
+## Workflow: cvxCRV staking loop
+
+Use this when the user asks how Convex monetizes CRV, how cvxCRV works, or what to do after depositing CRV.
+
+Core loop:
+1. Deposit `CRV` through the Convex path.
+2. Receive `cvxCRV` 1:1.
+3. Stake `cvxCRV` to earn protocol fee exposure and related rewards.
+4. Treat this as the liquidized Convex-aligned CRV route, not the same thing as holding raw CRV.
+
+Required facts:
+- cvxCRV is central to Convex’s fee and incentive design.
+- Curve LP fee flows and protocol economics are tied back into the cvxCRV side.
+- The user is trading raw CRV optionality for the Convex-aligned path.
+
+Avoid:
+- claiming cvxCRV is riskless or identical to CRV
+- confusing cvxCRV staking with vlCVX locking
+- treating cvxCRV rewards as fixed
+
+Good summary pattern:
+
+```text
+The cvxCRV path is the Convex-native way to convert CRV into a liquid Convex-aligned position, then stake it to earn protocol-linked rewards instead of managing raw CRV and veCRV directly.
+```
+
 ## Workflow: vlCVX vote-locking loop
 
 Use this when the user asks about long-term Convex participation, vlCVX, gauge voting, or bribe markets.
