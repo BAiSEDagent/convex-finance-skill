@@ -45,6 +45,7 @@ Correct behavior:
 - Current APY and current claimable rewards are not static facts.
 - Reward composition must be decomposed, not flattened into one headline number.
 - Addresses should come from official docs or verified explorers, not memory.
+- Prisma should not be treated as an active default surface; it is legacy / shutdown context.
 
 ## Core mental model
 
@@ -67,11 +68,12 @@ Keep these surfaces separate:
 - **Curve / main Convex path:** boosted LP staking, CVX, cvxCRV, lockers, reward contracts
 - **Frax path:** separate booster / voter / staking contracts around cvxFXS
 - **f(x) path:** separate booster / voter / staking contracts around cvxFXN
-- **Prisma path:** separate booster / depositor / staking and fee receiver contracts around `cvxPrisma`
+- **Prisma path (historical / inactive):** separate booster / depositor / staking and fee receiver contracts around `cvxPrisma`, but treat this surface as legacy context after the Prisma shutdown
 - **MCP layer:** read-only analytics and workflow support, not execution
 
 Default to the Curve-centric surface when the user says "Convex" with no extra detail.
-If they mention FXS, cvxFXS, FXN, cvxFXN, Prisma, or cvxPrisma, switch surfaces explicitly and load `references/contract-addresses.md`.
+If they mention FXS, cvxFXS, FXN, or cvxFXN, switch surfaces explicitly and load `references/contract-addresses.md`.
+If they mention Prisma or cvxPrisma, frame it as historical / inactive context unless they explicitly ask about legacy contracts or post-mortem details.
 
 ## Convex MCP vs direct protocol reasoning
 

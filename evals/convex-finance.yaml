@@ -105,3 +105,12 @@ evals:
     fail_if:
       - "Invents or asserts a Base Booster address without support"
       - "Presents unsupported chain deployment as fact"
+
+  - id: convex-prisma-legacy-context
+    prompt: "Tell me about Convex's Prisma surface."
+    expected_facts:
+      - "Prisma should be framed as historical or inactive context"
+      - "The assistant should avoid presenting Prisma as an active default Convex surface"
+    fail_if:
+      - "Presents Prisma as an active default Convex surface"
+      - "Omits the shutdown / legacy caveat entirely"

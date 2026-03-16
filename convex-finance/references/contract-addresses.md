@@ -86,7 +86,9 @@ Verification method standard: official Convex docs first, then verified block ex
 - Burner: `0x0f6E12F0Be8487c35E063Ec0E03903367C421e94`
 - Fee Deposit: `0x8133F7D5CD1A1E184228C373F5bEFa98Fa01395D`
 
-## Prisma surface
+## Prisma surface (historical / inactive)
+
+Treat this section as legacy reference material. Prisma was compromised and later shut down / abandoned, so do not present this as an active default Convex surface.
 
 - VoteProxy: `0x8ad7a9e2B3Cd9214f36Cb871336d8ab34DdFdD5b`
 - cvxPrisma: `0x34635280737b5BFe6c7DC2FC3065D60d66e78185`
