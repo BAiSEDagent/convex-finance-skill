@@ -123,6 +123,32 @@ Convex snapshot:
 - treasury: ...
 ```
 
+## Workflow: vlCVX vote-locking loop
+
+Use this when the user asks about long-term Convex participation, vlCVX, gauge voting, or bribe markets.
+
+Core loop:
+1. Lock `CVX` into the current vlCVX locker.
+2. Receive vote-locked governance power (`vlCVX`).
+3. Use that voting power on the biweekly cadence to influence gauge weights.
+4. Earn fee exposure and potentially external vote incentives / bribes through systems like Votium or Hidden Hand.
+
+Required facts:
+- vlCVX is a governance / coordination surface, not just a passive staking product.
+- The locker address changed historically; use the current locker, not the old one.
+- Bribe and vote markets are part of the Convex power-user loop.
+
+Avoid:
+- implying bribes are guaranteed
+- implying voting cadence is arbitrary
+- confusing CVX staking with vlCVX locking
+
+Good summary pattern:
+
+```text
+The Convex power-user loop is: lock CVX for vlCVX, use that voting power on the recurring gauge-weight cycle, and capture protocol fee exposure plus any external vote incentives if you participate in the bribe markets.
+```
+
 ## Workflow: use direct protocol references safely
 
 When the user asks for contracts, addresses, or architecture:

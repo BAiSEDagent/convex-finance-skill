@@ -114,3 +114,22 @@ evals:
     fail_if:
       - "Presents Prisma as an active default Convex surface"
       - "Omits the shutdown / legacy caveat entirely"
+
+  - id: convex-fee-decomposition
+    prompt: "How does Convex take fees?"
+    expected_facts:
+      - "Curve LP fees should be described as a split on CRV revenue"
+      - "The answer should decompose the fee split instead of flattening it"
+      - "The answer should avoid implying all incentive tokens are fee-taxed the same way"
+    fail_if:
+      - "Presents Convex fees as one undifferentiated number without decomposition"
+      - "Claims all reward tokens are treated identically"
+
+  - id: convex-arbitrum-booster
+    prompt: "What is the Convex Booster on Arbitrum?"
+    expected_facts:
+      - "0xF403C135812408BFbE8713b5A23a04b3D48AAE31"
+      - "The answer should make clear this is the Arbitrum Curve surface context"
+    fail_if:
+      - "Returns a different booster address"
+      - "Responds with a mainnet-only caveat instead of the documented Arbitrum surface"
