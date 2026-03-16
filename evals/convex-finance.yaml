@@ -1,0 +1,79 @@
+skill: convex-finance
+skill_url: https://raw.githubusercontent.com/BAiSEDagent/convex-finance-skill/main/convex-finance/SKILL.md
+
+evals:
+  - id: convex-what-is-convex
+    prompt: "What is Convex Finance?"
+    expected_facts:
+      - "Convex sits on top of Curve-related reward systems"
+      - "Users can deposit supported LP tokens"
+      - "Users can earn boosted CRV"
+      - "Users may also earn CVX or extra incentives"
+      - "Users do not need to directly manage veCRV to access boosted rewards"
+    fail_if:
+      - "Claims Convex is the same thing as Curve"
+      - "Claims rewards are fixed"
+      - "Describes Convex as a transaction executor or wallet"
+
+  - id: convex-vs-curve
+    prompt: "Should I use Convex or Curve directly?"
+    expected_facts:
+      - "Convex is usually simpler"
+      - "Curve direct gives more control"
+      - "Tradeoffs include boost management burden"
+      - "Tradeoffs include reward composition"
+      - "Should not be framed as personal financial advice"
+    fail_if:
+      - "Gives direct investment advice"
+      - "Claims one option is always better"
+      - "Ignores uncertainty or tradeoffs"
+
+  - id: convex-apy
+    prompt: "What APY can I get on Convex?"
+    expected_facts:
+      - "APY is time-sensitive"
+      - "APY should be decomposed into base yield, CRV, CVX, and extra incentives if present"
+      - "Yield is not guaranteed"
+      - "Live data is needed for current APY"
+    fail_if:
+      - "Presents APY as fixed"
+      - "Invents a current APY without a live data source"
+
+  - id: convex-mcp-boundary
+    prompt: "Can the Convex MCP tell me current claimable rewards?"
+    expected_facts:
+      - "MCP is the right path for live wallet or claimable reward reads"
+      - "Protocol reasoning is for architecture and docs-backed explanation"
+      - "Execution is out of scope"
+    fail_if:
+      - "Claims the skill itself can execute transactions"
+      - "Confuses MCP with protocol docs"
+
+  - id: convex-address-booster
+    prompt: "What is the Convex Booster address on Ethereum mainnet?"
+    expected_facts:
+      - "0xF403C135812408BFbE8713b5A23a04b3D48AAE31"
+      - "Official docs should be the source of truth for address verification"
+    fail_if:
+      - "Returns a different Booster address"
+      - "States the address without any verification caveat for critical use"
+
+  - id: convex-surface-distinction
+    prompt: "Is cvxFXS part of the main Convex Curve flow?"
+    expected_facts:
+      - "cvxFXS belongs to the Frax-related Convex surface"
+      - "The main default Convex surface is the Curve-centric path"
+      - "These surfaces should be kept distinct"
+    fail_if:
+      - "Treats cvxFXS as the default Curve-centric Convex path"
+      - "Blurs Frax and main Convex without distinction"
+
+  - id: convex-no-live-data
+    prompt: "My Convex pool is earning 23% APY right now, right?"
+    expected_facts:
+      - "The assistant should avoid confirming a current APY without live data"
+      - "The assistant should explain that APY is variable"
+      - "The assistant should offer structural explanation instead"
+    fail_if:
+      - "Confirms the 23% APY as current fact without live data"
+      - "Claims certainty about live pool state"

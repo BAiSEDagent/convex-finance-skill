@@ -1,47 +1,72 @@
 ---
 name: convex-finance
-description: "Use when an agent needs to understand or operate around Convex Finance: boosted Curve LP staking, cvxCRV, CVX rewards, Convex pool discovery, wallet position tracking, claimable reward checks, Convex contract references, or APY comparisons across Convex, Curve, Frax, and f(x). Trigger on phrases like 'Convex Finance', 'Convex pools', 'boosted staking', 'cvxCRV', 'claimable CRV', 'CVX rewards', 'Convex APY', 'track my Convex position', or 'how does Convex work'."
+description: "Use when an agent needs to understand or operate around Convex Finance: boosted Curve LP staking, cvxCRV, CVX rewards, Convex pool discovery, wallet position tracking, claimable reward checks, contract references, or APY comparisons across Convex, Curve, Frax, and f(x). Trigger on phrases like 'Convex Finance', 'Convex pools', 'boosted staking', 'cvxCRV', 'claimable CRV', 'CVX rewards', 'Convex APY', 'track my Convex position', or 'how does Convex work'."
 ---
 
 # Convex Finance
 
 Use this skill when the user is asking about the **Convex protocol itself**, not just the `convex-mcp` implementation.
 
-Use this skill for:
-- boosted staking on top of Curve
-- CVX and cvxCRV reward flows
-- pool discovery and position analysis
-- protocol-level stats and contract references
-- when to use Convex MCP vs direct onchain inspection
+## Scope
 
-Do **not** use this skill as the primary skill when the user is really asking to:
+Use this skill for:
+- Convex protocol mechanics
+- boosted Curve LP staking
+- CVX and cvxCRV reward flows
+- Convex pool / position analysis
+- contract references from official Convex docs
+- deciding when to use Convex MCP vs protocol reasoning
+
+Do **not** use this skill as the primary skill when the user is asking to:
 - execute a transaction
 - build or debug the MCP server itself
-- deploy a smart contract
-- do a full Solidity security audit
+- deploy or audit Solidity code
+- get guaranteed or current yield without a live data source
 
-In those cases, route to the transaction-capable integration, MCP-builder flow, or Ethereum security/audit workflow instead.
+## What models commonly get wrong
+
+- They confuse the Convex protocol with the `convex-mcp` analytics layer.
+- They hallucinate current APY, current pool status, or current claimable rewards.
+- They blur together the main Curve-centric Convex system with the Frax and f(x) surfaces.
+- They present reward composition as fixed instead of variable.
+- They guess contract addresses from memory instead of using official docs or verified sources.
+
+Correct behavior:
+- Use protocol reasoning for architecture, concepts, and docs-backed references.
+- Use MCP or direct live reads for current wallet state, pool state, or moving yields.
+- Keep Curve/main Convex, Frax/cvxFXS, and f(x)/cvxFXN clearly separated.
+- Treat APY and rewards as moving estimates, not guarantees.
+- Prefer official Convex docs for contract identity.
 
 ## Core mental model
 
-Convex sits on top of Curve and related ecosystems to make reward boosting easier.
-
 Simple framing:
-1. A user deposits supported LP tokens into Convex.
-2. Convex stakes those LP tokens through its boost machinery.
-3. The user earns boosted CRV plus CVX, and sometimes extra incentive tokens.
-4. The user does not need to directly manage veCRV to access boosted rewards.
+1. Users deposit supported LP tokens into Convex.
+2. Convex handles the boosting path around those positions.
+3. Users can earn boosted CRV, CVX, and sometimes extra incentive tokens.
+4. Users do not need to directly manage veCRV to access that boosted exposure.
 
-Related paths:
-- Deposit CRV -> receive `cvxCRV`
-- Stake `cvxCRV` -> earn platform fees / rewards
-- Stake `CVX` -> earn platform fee share in `cvxCRV`
+Related routes:
+- deposit CRV -> receive `cvxCRV`
+- stake `cvxCRV` -> earn platform fee share / rewards
+- stake `CVX` -> earn platform fee exposure through `cvxCRV`
 
-Use this framing first unless the user asks for deeper contract mechanics.
+Start here unless the user asks for deeper contract-level mechanics.
 
-## When to use Convex MCP vs direct protocol reasoning
+## Surface distinctions
 
-Use a Convex MCP server when the user needs:
+Keep these surfaces separate:
+- **Curve / main Convex path:** boosted LP staking, CVX, cvxCRV, lockers, reward contracts
+- **Frax path:** separate booster / voter / staking contracts around cvxFXS
+- **f(x) path:** separate booster / voter / staking contracts around cvxFXN
+- **MCP layer:** read-only analytics and workflow support, not execution
+
+Default to the Curve-centric surface when the user says "Convex" with no extra detail.
+If they mention FXS, cvxFXS, FXN, or cvxFXN, switch surfaces explicitly and load `references/contract-addresses.md`.
+
+## Convex MCP vs direct protocol reasoning
+
+Use Convex MCP when the user needs:
 - live pool lists
 - wallet position data
 - claimable reward checks
@@ -53,59 +78,22 @@ Use direct protocol reasoning plus official docs when the user needs:
 - contract references
 - architecture understanding
 - docs-backed answers about Convex, Curve, Frax, or f(x)
-- high-level strategy comparisons
+- strategy comparison without pretending to have live reads
 
-If both are needed, explain the protocol first, then use the MCP for live data.
+If both are needed, explain the protocol first, then use MCP for current data.
 
-## Recommended answer patterns
+## Verified facts to anchor on
 
-### 1. User asks: what is Convex
-Answer in one paragraph:
-- Convex simplifies Curve reward boosting
-- LPs can earn boosted CRV without managing veCRV themselves
-- Users may also earn CVX and extra incentives
-- Convex also has staking routes around cvxCRV and CVX
+- Convex is a reward-boosting layer around Curve-related liquidity systems.
+- Users can deposit supported LP tokens to get boosted CRV exposure without directly managing veCRV.
+- Reward composition is variable and may include CRV, CVX, and extra incentive tokens.
+- `convex-mcp` is for live reads and analytics, not execution.
+- Official Convex docs are the source of truth for contract identity.
+- Pool and APY data are time-sensitive.
 
-### 2. User asks: should I use Convex or Curve directly
-Compare on these axes:
-- simplicity
-- boost management burden
-- reward composition
-- liquidity / withdrawal flexibility
-- strategic exposure to CVX or cvxCRV
+## Canonical mainnet references
 
-Do not give financial advice. Explain tradeoffs.
-
-### 3. User asks about a wallet or pool
-1. Use MCP if available.
-2. If MCP is not available, fall back to direct onchain inspection.
-3. Report staked amount, reward components, and whether the pool appears active or shutdown.
-
-### 4. User asks for APY comparison
-Break APY into:
-- base yield
-- CRV rewards
-- CVX rewards
-- extra incentives if present
-
-Make it explicit that APY is time-sensitive and not guaranteed.
-
-## Protocol surface map
-
-Keep these surfaces distinct:
-- **Curve / main Convex path:** boosted LP staking, CVX, cvxCRV, lockers, reward contracts
-- **Frax path:** separate booster / voter / staking contracts around cvxFXS
-- **f(x) path:** separate booster / voter / staking contracts around cvxFXN
-- **MCP layer:** read-only analytics and workflow support, not execution
-
-If the user says "Convex" without more detail, assume they mean the main Curve-centric flow first.
-If they mention FXS, cvxFXS, FXN, or cvxFXN, load the wider address table in `references/contract-addresses.md` and answer against that surface specifically.
-
-## Canonical protocol facts
-
-Use official Convex docs and verified contract sources for these references.
-
-Ethereum mainnet addresses commonly needed:
+Use these as the most common Ethereum mainnet references:
 - Booster: `0xF403C135812408BFbE8713b5A23a04b3D48AAE31`
 - Booster Owner: `0x3cE6408F923326f81A7D7929952947748180f1E6`
 - Voter Proxy: `0x989AEb4d175e16225E39E87d0D97A3360524AD80`
@@ -119,74 +107,20 @@ Ethereum mainnet addresses commonly needed:
 - Claim Zap v3: `0x3f29cB4111CbdA8081642DA1f75B3c12DECf2516`
 - CVX Locker: `0x72a19342e8F1838460eBFCCEf09F6585e32db86E`
 
-Read `references/contract-addresses.md` when you need a wider address table across Curve mainnet, Frax, f(x), Arbitrum, or Polygon.
+For wider tables and surface-specific addresses, read `references/contract-addresses.md`.
+For operating guidance, read:
+- `references/workflows.md`
+- `references/failure-modes.md`
+- `references/answer-patterns.md`
 
-For execution-critical or production-facing answers, recommend quick verification before acting:
-- confirm the address against official Convex docs
-- confirm the block explorer page is verified
-- if available, confirm a simple read such as `symbol()`, `owner()`, or `poolLength()` matches expectations
-
-## Workflow references
-
-Read `references/workflows.md` when the user needs any of these:
-- enumerate Convex pools
-- inspect a wallet position
-- compare Convex APY to alternatives
-- explain cvxCRV / CVX staking routes
-- create monitoring or reporting around Convex stats
-- use Convex MCP in a structured way
-
-## Response style
+## Response rules
 
 - Lead with the conclusion.
 - Use plain English before raw JSON.
-- Keep the protocol explanation tight.
-- Mention uncertainty when yields or stats are moving.
-- Distinguish clearly between:
-  - protocol facts
-  - live MCP data
-  - estimates / projections
-
-Good pattern:
-
-```text
-Convex is the simpler route if you want boosted Curve exposure without managing veCRV yourself.
-
-In practice:
-- deposit supported LP tokens
-- earn boosted CRV + CVX
-- sometimes receive extra incentive tokens
-- withdraw without the user having to run a separate veCRV strategy
-```
-
-## Safety and correctness
-
-- Do not claim yields are fixed.
+- Do not claim fixed yields.
 - Do not imply this skill can execute transactions.
-- Do not hallucinate unsupported pools or reward tokens.
-- Prefer official docs, verified contracts, and live MCP data over memory.
-- Surface shutdown status and risk caveats when discussing pools.
-- If the user asks for execution, hand off to the relevant transaction-capable tool or integration instead of pretending this skill can do it.
-
-## Failure modes and how to respond
-
-### MCP data missing or stale
-- Say the live data path is unavailable or may be stale.
-- Fall back to protocol explanation and contract references.
-- Do not invent pool stats.
-
-### User does not know the pool id
-- Start from pool discovery.
-- If MCP is unavailable, ask for the LP token or strategy name instead of guessing.
-
-### User asks for best yield or what they should do
-- Do not give financial advice.
-- Reframe into factual comparison: simplicity, reward mix, liquidity, and execution risk.
-
-### Docs and live data disagree
-- Prefer the freshest verified live read for current state.
-- Prefer official docs for contract identity and architecture.
-- Call out the discrepancy explicitly.
+- Do not guess current APY, live rewards, or live pool status without a live data source.
+- If the user asks what they should do, reframe into factual tradeoffs rather than financial advice.
 
 ## Sources
 

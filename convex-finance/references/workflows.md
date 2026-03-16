@@ -4,7 +4,7 @@ Use this file when the user needs concrete process guidance around Convex usage,
 
 ## Quick trigger examples
 
-This reference is especially useful for prompts like:
+This reference is useful for prompts like:
 - "What is Convex and why do people use it?"
 - "Check my Convex position"
 - "Compare Convex vs Curve"
@@ -12,14 +12,21 @@ This reference is especially useful for prompts like:
 - "Is this Convex pool still active?"
 - "Estimate APY for 10k in Convex"
 
-## 1. Explain Convex quickly
+## Workflow: explain Convex to a new user
 
-Use this structure:
-1. Convex simplifies boosted Curve participation.
-2. Users deposit supported LP tokens into Convex.
-3. Convex routes staking through its boost system.
-4. Users earn boosted CRV, CVX, and sometimes extra incentives.
-5. Users avoid directly managing veCRV for that boosted exposure.
+Goal: answer in one paragraph with no jargon overload.
+
+Required facts:
+- Convex sits on top of Curve and related reward systems.
+- Users deposit supported LP tokens.
+- Convex handles reward boosting mechanics.
+- Users can earn boosted CRV, CVX, and sometimes extra incentives.
+- Users do not need to manage veCRV directly.
+
+Avoid:
+- claiming rewards are guaranteed
+- overexplaining locker mechanics unless asked
+- mixing in MCP details unless the user asks for live data
 
 Short version:
 
@@ -27,14 +34,18 @@ Short version:
 Convex is a reward-boosting layer around Curve and related ecosystems. It lets LPs access boosted rewards and additional incentive flows without having to actively manage veCRV themselves.
 ```
 
-## 2. Compare Convex vs Curve directly
+## Workflow: compare Convex vs Curve direct
 
-Compare on:
+Frame the answer across:
 - simplicity
-- boost management complexity
+- control
 - reward composition
+- boost-management burden
+- liquidity / flexibility
 - exposure to CVX / cvxCRV
-- flexibility and withdrawal behavior
+
+Required disclaimer:
+- this is a factual tradeoff comparison, not financial advice
 
 Good summary pattern:
 
@@ -42,20 +53,20 @@ Good summary pattern:
 Curve direct gives you more raw control, but Convex is usually the simpler route if you want boosted rewards without running your own veCRV strategy.
 ```
 
-## 3. Analyze a user position with Convex MCP
+## Workflow: analyze a wallet or pool
 
-If a Convex MCP server is available:
-1. Identify the wallet address.
-2. Identify the pool id if known.
-3. If pool id is unknown, start with pool discovery.
-4. Fetch position data.
-5. Return:
-   - staked amount
-   - estimated USD value
-   - earned CRV
-   - earned CVX
-   - claimable value
-   - whether the pool appears active or shutdown
+Preferred order:
+1. Use MCP for live wallet data if available.
+2. If MCP is unavailable, say so clearly.
+3. Fall back to protocol explanation and contract references.
+4. Never invent claimable balances or APY.
+
+Return shape:
+- pool / strategy
+- staked amount
+- reward components
+- pool status
+- any uncertainty or stale-data caveat
 
 Suggested answer shape:
 
@@ -68,17 +79,18 @@ Your Convex position:
 - Pool status: active / shutdown
 ```
 
-## 4. Compare APY
+## Workflow: answer APY questions
 
-When a user asks whether a pool looks attractive:
-1. Get the target pool.
-2. Break projected return into:
-   - base yield
-   - CRV rewards
-   - CVX rewards
-   - extra incentives if available
-3. Explain what is structural vs variable.
-4. State clearly that APY is a moving estimate.
+Always decompose projected return into:
+- base yield
+- CRV rewards
+- CVX rewards
+- extra incentives
+
+Always say:
+- APY is time-sensitive
+- reward mix can change
+- headline APY is an estimate, not a promise
 
 Good phrasing:
 
@@ -86,7 +98,7 @@ Good phrasing:
 The headline APY is useful, but the more important question is what drives it. In Convex, that usually means base pool yield plus CRV emissions plus CVX emissions, all of which can move over time.
 ```
 
-## 5. Protocol reporting
+## Workflow: protocol reporting
 
 For dashboards or periodic reporting, emphasize:
 - TVL
@@ -105,21 +117,10 @@ Convex snapshot:
 - treasury: ...
 ```
 
-## 6. Use direct protocol references safely
+## Workflow: use direct protocol references safely
 
 When the user asks for contracts, addresses, or architecture:
 1. Start from official Convex docs.
-2. Use the contract-addresses reference.
+2. Use `contract-addresses.md`.
 3. If the answer is execution-critical, recommend re-verification against a block explorer.
 4. Avoid guessing if an address is uncertain.
-
-## 7. When not to overreach
-
-Do not pretend this skill can:
-- deposit to Convex
-- claim rewards
-- withdraw funds
-- sign transactions
-- guarantee yield outcomes
-
-If the user asks for execution, route to the correct transaction-capable system or say that this skill is analytical / guidance-only.

@@ -5,7 +5,13 @@ Use this file when the user needs exact protocol references, contract lookups, o
 Primary source:
 - https://docs.convexfinance.com/convexfinance/faq/contract-addresses
 
-## Curve Mainnet
+## Rules
+
+- Treat this file as a curated reference, not an exhaustive registry.
+- For execution-critical answers, tell the agent to re-check official Convex docs and a verified block explorer page before acting.
+- If there is any discrepancy between memory and docs, prefer official Convex docs for contract identity.
+
+## Main Convex / Curve-centric Ethereum surface
 
 - Booster: `0xF403C135812408BFbE8713b5A23a04b3D48AAE31`
 - Booster Owner: `0x3cE6408F923326f81A7D7929952947748180f1E6`
@@ -24,6 +30,12 @@ Primary source:
 - Claim Zap v3: `0x3f29cB4111CbdA8081642DA1f75B3c12DECf2516`
 - CVX Locker: `0x72a19342e8F1838460eBFCCEf09F6585e32db86E`
 - Pool Utilities: `0x5Fba69a794F395184b5760DAf1134028608e5Cd1`
+
+## Surface distinction rules
+
+- If the user says "Convex" with no extra context, start with the Curve-centric surface.
+- If the user mentions FXS, cvxFXS, FXN, or cvxFXN, explicitly switch to the Frax or f(x) surface.
+- Never answer with an address from the wrong surface.
 
 ## Curve Arbitrum
 
@@ -49,7 +61,7 @@ Primary source:
 - Pool Utilities: `0x25E12482a25CF36EC70fDA2A09C1ED077Fc21616`
 - Pool Manager: `0xFC0A2FfDea23804494aA1707741E5A6Eaa2f8017`
 
-## Frax FXS
+## Frax surface
 
 - Booster: `0xA2cF21b157b2f203e37b616b619f438B5aa86Ee5`
 - Voter Proxy: `0x59CFCD384746ec3035299D90782Be065e466800B`
@@ -60,7 +72,7 @@ Primary source:
 - Pool Utilities: `0xFCB28d032e422aE3710C1Ad74338cBB40B0749CF`
 - Fee Deposit: `0x7A527d8bB09f7D70C148aB5DE919e9BF68a0d769`
 
-## FX Protocol
+## f(x) surface
 
 - Voter Proxy: `0xd11a4Ee017cA0BECA8FA45fF2abFe9C6267b7881`
 - Booster: `0xAffe966B27ba3E4Ebb8A0eC124C7b7019CC762f8`
@@ -70,16 +82,9 @@ Primary source:
 - Burner: `0x0f6E12F0Be8487c35E063Ec0E03903367C421e94`
 - Fee Deposit: `0x8133F7D5CD1A1E184228C373F5bEFa98Fa01395D`
 
-## Usage guidance
+## Verification checklist
 
-- Treat this file as a convenience reference, not blind truth forever.
-- Before using an address in production code or user-facing analysis, re-check the official docs or verified block explorer page.
-- If the user only needs the most common Ethereum mainnet references, stay in `SKILL.md` and avoid loading this file.
-
-## Verification patterns
-
-Use these as lightweight sanity checks before treating an address as operational truth:
-- token contracts: verify `symbol()` and `decimals()` on a block explorer or read call
-- ownership-sensitive contracts: verify `owner()` or documented admin role
-- booster contracts: verify a read like `poolLength()` returns sensible non-zero state
-- reward contracts: verify the documented reward token aligns with current explorer metadata
+Before giving an address for anything important:
+1. Match the contract name against official Convex docs.
+2. Confirm the explorer page is verified if possible.
+3. Optionally confirm a lightweight read such as `symbol()`, `owner()`, or `poolLength()`.

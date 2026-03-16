@@ -1,33 +1,41 @@
 # Convex Finance Skill
 
-Anthropic-style agent skill for **Convex Finance**.
+Standalone Anthropic-style agent skill for **Convex Finance**.
 
-This repo is a standalone skill package for agents that need to understand and work with the Convex protocol: boosted Curve LP staking, cvxCRV, CVX rewards, pool discovery, position tracking, APY comparison, and protocol contract references.
+This repo is for agents that need to understand and work with the Convex protocol: boosted Curve LP staking, cvxCRV, CVX rewards, pool discovery, position tracking, APY comparison, and protocol contract references.
 
 ## Repo layout
 
 ```text
 convex-finance-skill/
 ├── README.md
-└── convex-finance/
-    ├── SKILL.md
-    └── references/
-        ├── contract-addresses.md
-        └── workflows.md
+├── convex-finance/
+│   ├── SKILL.md
+│   └── references/
+│       ├── answer-patterns.md
+│       ├── contract-addresses.md
+│       ├── failure-modes.md
+│       └── workflows.md
+└── evals/
+    └── convex-finance.yaml
 ```
 
 ## What the skill covers
 
-- What Convex is and how it fits around Curve / Frax / f(x)
-- When an agent should route to this skill
-- Core protocol mental model
-- Read-only analytical workflows
-- Canonical contract references from official Convex docs
-- Guidance for agents using a Convex MCP server or direct onchain reads
+- Convex protocol mental model
+- protocol-vs-MCP boundary
+- main Convex vs Frax vs f(x) surface distinctions
+- curated contract references from official Convex docs
+- operational answer patterns and failure modes
+- evals for targeted factual uplift
 
 ## Install
 
 Use the `convex-finance/` folder as the skill folder.
+
+## Evals
+
+The repo includes `evals/convex-finance.yaml` with prompt, expected facts, and fail conditions modeled after EthSkills-style evaluation.
 
 ## Sources
 
