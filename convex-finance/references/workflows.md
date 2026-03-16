@@ -43,9 +43,15 @@ Frame the answer across:
 - boost-management burden
 - liquidity / flexibility
 - exposure to CVX / cvxCRV
+- fee structure and who captures protocol revenue
 
 Required disclaimer:
 - this is a factual tradeoff comparison, not financial advice
+
+Important context:
+- for Curve LPs on Convex, official docs currently describe a 17% fee on CRV revenue
+- that fee is split across cvxCRV stakers, CVX stakers, treasury, and the harvest caller
+- do not compare gross Curve rewards to net Convex rewards without mentioning this
 
 Good summary pattern:
 

@@ -31,7 +31,8 @@ Verification method standard: official Convex docs first, then verified block ex
 - cvxCRV Rewards: `0x3Fe65692bfCD0e6CF84cB1E7d24108E434A7587e`
 - Pool Manager: `0x782BcE229a8b603c99161e867A49D5426da37f95`
 - Claim Zap v3: `0x3f29cB4111CbdA8081642DA1f75B3c12DECf2516`
-- CVX Locker: `0x72a19342e8F1838460eBFCCEf09F6585e32db86E`
+- CVX Locker (current vlCVX): `0x72a19342e8F1838460eBFCCEf09F6585e32db86E`
+- CVX Locker (old vlCVX): `0xD18140b4B819b895A3dba5442F959fA44994AF50`
 - Pool Utilities: `0x5Fba69a794F395184b5760DAf1134028608e5Cd1`
 
 ## Surface distinction rules
@@ -84,6 +85,29 @@ Verification method standard: official Convex docs first, then verified block ex
 - cvxFXN Staking: `0xEC60Cd4a5866fb3B0DD317A46d3B474a24e06beF`
 - Burner: `0x0f6E12F0Be8487c35E063Ec0E03903367C421e94`
 - Fee Deposit: `0x8133F7D5CD1A1E184228C373F5bEFa98Fa01395D`
+
+## Prisma surface
+
+- VoteProxy: `0x8ad7a9e2B3Cd9214f36Cb871336d8ab34DdFdD5b`
+- cvxPrisma: `0x34635280737b5BFe6c7DC2FC3065D60d66e78185`
+- Depositor: `0x61404F7c2d8b1F3373eb3c6e8C4b8d8332c2D5B8`
+- Burner: `0xCFC7B36fA3B59CA963a44c86c2C369bC311896E5`
+- Booster: `0x79a50f83E7AFf970CeAB5152a15461A4f1c3799E`
+- cvxPrisma Staking: `0x0c73f1cFd5C9dFc150C8707Aa47Acbd14F0BE108`
+- Staking Fee Receiver Booster: `0xaF92400476cd81C7379bB54fD2646E8fa476Cf3F`
+- Staking Fee Receiver Platform: `0x3C716E88AE0fcc5D78bd11810CA451941e2eFe6A`
+- Fee Deposit Booster: `0x4B33E944E4Ae1Cb58ABfED5a16a4E25b041Fb5d5`
+- Fee Deposit Platform: `0xe91861cB57C6C2AA55B7AB0E6853ae1D96b63EFA`
+- Receiver Vault: `0xb20b384C2F958f2100E14C5048922613F937674A`
+- Fee Claimer Booster: `0x394bfb7e6A6E7197BBA16C8dC5f581de8A1847b6`
+- Fee Claimer Platform: `0x2F30ef614C4B10C32437864EfE57B6D8ED4b9Ba8`
+- Boost Delegate: `0x806d47Df9141FdE4A77e1e54F0ca4184526ADe60`
+- Utility: `0x3fc264C5154D16c0eB765F6dd12A55Bdc18F7951`
+- Vesting Claim: `0x7e2Ca1134dC44B5D368575Da316d87ac9B9065E7`
+- Drop Minter Vecrv: `0x8864187b257e0fB3BD74054b72D9c1834e76d712`
+- Drop Minter Points: `0x9c4d60fA85088d40e3D8030dba283E9708EC9292`
+- Treasury Manager: `0xBb48c21E9101A85EE6D00B4F1A7B946dF1B09EA7`
+- Treasury Manager Prisma: `0xD60cd4AD7A2D6bF4eC9fccbCAeec769b52726dfd`
 
 ## Verification checklist
 

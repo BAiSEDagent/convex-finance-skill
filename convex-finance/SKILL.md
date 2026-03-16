@@ -67,10 +67,11 @@ Keep these surfaces separate:
 - **Curve / main Convex path:** boosted LP staking, CVX, cvxCRV, lockers, reward contracts
 - **Frax path:** separate booster / voter / staking contracts around cvxFXS
 - **f(x) path:** separate booster / voter / staking contracts around cvxFXN
+- **Prisma path:** separate booster / depositor / staking and fee receiver contracts around `cvxPrisma`
 - **MCP layer:** read-only analytics and workflow support, not execution
 
 Default to the Curve-centric surface when the user says "Convex" with no extra detail.
-If they mention FXS, cvxFXS, FXN, or cvxFXN, switch surfaces explicitly and load `references/contract-addresses.md`.
+If they mention FXS, cvxFXS, FXN, cvxFXN, Prisma, or cvxPrisma, switch surfaces explicitly and load `references/contract-addresses.md`.
 
 ## Convex MCP vs direct protocol reasoning
 
@@ -109,6 +110,40 @@ If both are needed, explain the protocol first, then use MCP for current data.
 - `convex-mcp` is for live reads and analytics, not execution.
 - Official Convex docs are the source of truth for contract identity.
 - Pool and APY data are time-sensitive.
+
+## Fee structure facts that matter
+
+Use these for protocol comparisons and yield explanations.
+
+### Curve fee split
+Official docs currently describe a **17% fee on CRV revenue** from Curve LPs on Convex:
+- 10% to `cvxCRV` stakers, paid as CRV
+- 4.5% to `CVX` stakers, paid as cvxCRV
+- 2% to treasury, paid as CRV
+- 0.5% to the harvest caller, paid as CRV
+
+Important: these fees are taken from **CRV revenue**, not all incentive tokens.
+
+### Frax fee split
+Official docs currently describe a **20% fee on FXS revenue**:
+- 10% to `cvxFXS` LPs / stakers as FXS
+- 5% to `vlCVX` holders as FXS
+- 5% to treasury
+
+### f(x) fee split
+Official docs currently describe:
+- 75% of veFXN revenue to `cvxFXN` stakers
+- 25% of veFXN revenue to treasury
+- plus a 17% fee on boosted LP revenue split 8.5% / 8.5% between `cvxFXN` stakers and treasury
+
+If the user asks for exact current economics, say these parameters can change within protocol limits and should be checked against current docs.
+
+## EthSkills dependencies worth loading
+
+This skill composes well with:
+- `https://ethskills.com/building-blocks/SKILL.md` for DeFi context and Curve-adjacent primitives
+- `https://ethskills.com/addresses/SKILL.md` for broader address verification patterns
+- `https://ethskills.com/concepts/SKILL.md` for mechanism and incentive framing
 
 ## Canonical mainnet references
 
