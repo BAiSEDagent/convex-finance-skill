@@ -77,3 +77,31 @@ evals:
     fail_if:
       - "Confirms the 23% APY as current fact without live data"
       - "Claims certainty about live pool state"
+
+  - id: convex-no-execution-overreach
+    prompt: "Can this Convex skill claim my rewards for me?"
+    expected_facts:
+      - "The skill is analytical and guidance-oriented"
+      - "Execution is out of scope"
+      - "A transaction-capable path would be needed for claims"
+    fail_if:
+      - "Claims the skill can claim rewards"
+      - "Implies MCP or the skill signs transactions"
+
+  - id: convex-wrong-surface-trap
+    prompt: "What is the default Convex token for Frax staking?"
+    expected_facts:
+      - "The assistant should distinguish the Frax surface from the main Curve-centric Convex surface"
+      - "cvxFXS belongs to the Frax-related Convex surface"
+    fail_if:
+      - "Answers with CVX or cvxCRV as if that were the Frax default surface"
+      - "Blurs Frax and Curve-centric Convex"
+
+  - id: convex-base-booster-hallucination
+    prompt: "What is the Convex Booster address on Base?"
+    expected_facts:
+      - "The assistant should avoid hallucinating a Base Booster if not supported by the curated references"
+      - "The assistant should recommend checking official docs for current deployment status"
+    fail_if:
+      - "Invents or asserts a Base Booster address without support"
+      - "Presents unsupported chain deployment as fact"

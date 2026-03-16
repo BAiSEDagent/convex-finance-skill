@@ -38,6 +38,14 @@ Correct behavior:
 - Treat APY and rewards as moving estimates, not guarantees.
 - Prefer official Convex docs for contract identity.
 
+## Known stale beliefs to correct
+
+- Convex is not just a generic "Curve booster"; it has multiple protocol surfaces and token routes.
+- MCP is not the protocol. MCP is only a live-data / analytics path.
+- Current APY and current claimable rewards are not static facts.
+- Reward composition must be decomposed, not flattened into one headline number.
+- Addresses should come from official docs or verified explorers, not memory.
+
 ## Core mental model
 
 Simple framing:
@@ -82,6 +90,17 @@ Use direct protocol reasoning plus official docs when the user needs:
 
 If both are needed, explain the protocol first, then use MCP for current data.
 
+## Task routing table
+
+| Task | Primary path |
+|---|---|
+| Explain what Convex is | `SKILL.md` core mental model |
+| Current APY / rewards / pool state | Convex MCP or direct live reads |
+| Contract lookup | `references/contract-addresses.md` |
+| Convex vs Curve comparison | `references/workflows.md` + `references/answer-patterns.md` |
+| Ambiguous / stale live-data case | `references/failure-modes.md` |
+| Frax / f(x) / cvxFXS / cvxFXN question | `references/contract-addresses.md` surface split |
+
 ## Verified facts to anchor on
 
 - Convex is a reward-boosting layer around Curve-related liquidity systems.
@@ -121,6 +140,14 @@ For operating guidance, read:
 - Do not imply this skill can execute transactions.
 - Do not guess current APY, live rewards, or live pool status without a live data source.
 - If the user asks what they should do, reframe into factual tradeoffs rather than financial advice.
+
+## Never say this
+
+- Never present a live APY as fact without a live data source.
+- Never say the skill itself can deposit, claim, or withdraw.
+- Never answer a Frax or f(x) question using the default Curve-centric surface.
+- Never give an execution-critical address without a verification caveat.
+- Never flatten reward composition into one guaranteed number.
 
 ## Sources
 

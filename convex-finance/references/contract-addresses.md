@@ -5,6 +5,9 @@ Use this file when the user needs exact protocol references, contract lookups, o
 Primary source:
 - https://docs.convexfinance.com/convexfinance/faq/contract-addresses
 
+Last reviewed against official docs and source repos: 2026-03-16
+Verification method standard: official Convex docs first, then verified block explorer page, then lightweight read checks where available.
+
 ## Rules
 
 - Treat this file as a curated reference, not an exhaustive registry.
