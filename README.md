@@ -1,6 +1,6 @@
 # Convex Finance Skill
 
-Standalone Anthropic-style agent skill for **Convex Finance**.
+Standalone agent skill for **Convex Finance**.
 
 This repo is for agents that need to understand and work with the Convex protocol: boosted Curve LP staking, cvxCRV, CVX rewards, pool discovery, position tracking, APY comparison, and protocol contract references.
 
